@@ -31,18 +31,17 @@ Next state of D flip-flop is always equal to data input, D for every positive tr
 /* write all the steps invloved */
 
 **PROGRAM**<br>
-module exp8(D,clk,Q,Qbar);<br>
-input D,clk;<br>
-output reg Q;<br>
-output reg Qbar;<br>
-initial Q=0;<br>
-initial Qbar =1;<br>
-always @ (posedge clk)<br>
-begin<br>
-Q=D;<br>
-Qbar = ~D;<br>
-end<br>
-endmodule<br>
+module d_ff_neg_edge (d, clk, rst, q);
+
+input d, clk, rst;
+
+output reg q;
+
+always @(negedge clk or posedge rst) begin if (rst) q <= 0; // Reset the flip-flop else q <= d; // D input is passed to Q on the negative clock edge
+
+end
+
+endmodule
 
 /* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
 */
